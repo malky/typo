@@ -11,16 +11,17 @@ class Admin::ContentController < Admin::BaseController
       @this_article = Article.find(params[:id])
       @other_article_id = params[:merge_with]
 
-      if @other_article_id
+      unless @other_article_id == ""
         @new_article = @this_article.merge_with(@other_article_id)
       else
-        redirect_to :action => 'index'
         flash[:error] = _("Error, you didn't submit anything")
-        return
+        return(redirect_to :action => 'edit')
       end
-      #@merge_with_record = Article.find(params[:merge_with_id])
 
-      @new_article.save!
+      @new_article.publish!
+
+      Article.find(@other_article_id).destroy
+      #debugger
 
       redirect_to :action =>  'index'
       #Article.merge_with(params[:merge_with_id])

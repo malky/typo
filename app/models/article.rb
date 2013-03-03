@@ -469,9 +469,13 @@ class Article < Content
   end
 
   def merge_with(other_article_id)
-    self.comments << Article.find(other_article_id).comments
-    self.body_and_extended << Article.find(other_article_id).body_and_extended
-    
+    @other_article = Article.find(other_article_id)
+    self.comments << @other_article.comments
+    self.body << @other_article.body
+    #self.body_and_extended = @other_article.body.insert(start_index, span_open)
+    #self.generate_html(:body, self.body)
+    #self.content_fields << @other_article.content_fields
+
     return self   
   end
 end
