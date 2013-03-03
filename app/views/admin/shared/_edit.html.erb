@@ -6,9 +6,3 @@
 <% end %>
 
 
-<% if @article.user_id and User.find_by_id(session[:user]).profile_id == 1 %>
-	<%= form_tag :action => 'merge', :id => @article.id do %>
-	   	<%= render :partial => "show_merge" %>
-		<%= submit_tag 'Merge' %>
-	<% end %>
-<% end %>
