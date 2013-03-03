@@ -123,6 +123,15 @@ class Article < Content
 
   end
 
+  def merge_with(other_article_id)
+    @other_article = Article.find(other_article_id)
+    
+    self.comments << @other_article.comments
+    self.body << @other_article.body
+
+    return self   
+  end
+
   def year_url
     published_at.year.to_s
   end
@@ -468,12 +477,4 @@ class Article < Content
     return from..to
   end
 
-  def merge_with(other_article_id)
-    @other_article = Article.find(other_article_id)
-    
-    self.comments << @other_article.comments
-    self.body << @other_article.body
-
-    return self   
-  end
 end

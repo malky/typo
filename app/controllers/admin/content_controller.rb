@@ -13,14 +13,13 @@ class Admin::ContentController < Admin::BaseController
       @this_article = Article.find(params[:id])
       @other_article_id = params[:merge_with]
 
-
       if params[:merge_with] == params[:id]
         flash[:error] = _("Error, you cannot merge the same article with itself")
         return(redirect_to :action => 'index')
       end  
 
       unless @other_article_id == ""
-        @this_article.merge_with(@other_article_id).save!
+        @this_article.merge_with(@other_article_id)
       else
         flash[:error] = _("Error, your submition is wrong")
         return(redirect_to :action => 'index')
