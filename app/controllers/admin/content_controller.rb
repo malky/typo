@@ -25,7 +25,7 @@ class Admin::ContentController < Admin::BaseController
         return(redirect_to :action => 'index')
       end
 
-      #Article.find(@other_article_id).destroy
+      Article.find(@other_article_id).destroy
       #debugger
     rescue => e
       flash[:error] = _("error: #{e}, this_article: #{@this_article.id}, other: #{@other_article_id}")
