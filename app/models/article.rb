@@ -469,7 +469,7 @@ class Article < Content
   end
 
   def merge_with(other_article_id)
-    @other_article = Article.find(other_article_id)
+    #@other_article = Article.find(other_article_id)
     #self.comments << @other_article.comments
     #self.body << @other_article.body
 
