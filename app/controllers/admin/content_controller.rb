@@ -6,6 +6,25 @@ class Admin::ContentController < Admin::BaseController
 
   cache_sweeper :blog_sweeper
 
+  def merge
+
+      @this_article = Article.find(params[:id])
+      @other_article_id = params[:merge_with]
+
+      if @other_article_id
+        @new_article = @this_article.merge_with(@other_article_id)
+      else
+        flash[:error] = _("Error, you didn't submit anything")
+        return(redirect_to :action => 'index')
+      end
+      #@merge_with_record = Article.find(params[:merge_with_id])
+
+      Article.create(@new_article)
+
+      redirect_to :action =>  'index'
+      #Article.merge_with(params[:merge_with_id])
+  end
+
   def auto_complete_for_article_keywords
     @items = Tag.find_with_char params[:article][:keywords].strip
     render :inline => "<%= raw auto_complete_result @items, 'name' %>"

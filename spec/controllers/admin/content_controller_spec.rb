@@ -486,6 +486,10 @@ describe Admin::ContentController do
       it 'should edit article' do
         get :edit, 'id' => @article.id
         response.should render_template('new')
+        #save_and_open
+        #debbuger
+        #p response.class
+        #ird -d (to go into ruby terminal)
         assigns(:article).should_not be_nil
         assigns(:article).should be_valid
         response.should contain(/body/)

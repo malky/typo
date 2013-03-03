@@ -466,4 +466,10 @@ class Article < Content
     to = to - 1 # pull off 1 second so we don't overlap onto the next day
     return from..to
   end
+
+  def merge_with(other_article_id)
+    self.comments << Article.find(other_article_id).comments
+    self.body_and_extended << Article.find(other_article_id).body_and_extended
+    return self   
+  end
 end

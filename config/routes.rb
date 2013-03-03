@@ -116,4 +116,11 @@ Rails.application.routes.draw do
   root :to  => 'articles#index', :format => false
 
   match '*from', :to => 'articles#redirect', :format => false
+
+  #resources :articles
+  # Route that posts 'Search TMDb' form
+  #post '/admin/content/merge/:id', :to => 'contents#merge', :format => false
+  #match '/admin/content/merge/:id', :to => 'contents#merge'
+  post "admin/content/merge/:id", :to => 'contents#merge', :format => false
+
 end
