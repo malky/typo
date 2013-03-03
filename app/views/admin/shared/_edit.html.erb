@@ -6,9 +6,10 @@
 <% end %>
 
 
-<h3><%= @article.user_id %><h3>
 	<%= form_tag :action => 'merge', :id => @article.id do %>
-	   	<%= render :partial => "show_merge" %>
+	   	<h4>Merge Articles</h4>
+		<label for='merge_with_id'>Article ID</label>
+		<input id="merge_with_id" name="merge_with" type="text" />
 		<%= submit_tag 'Merge' %>
 	<% end %>
 	
