@@ -8,13 +8,11 @@ class Admin::ContentController < Admin::BaseController
 
   def merge
 
+    begin
+
       @this_article = Article.find(params[:id])
       @other_article_id = params[:merge_with]
 
-      unless @this_article
-        flash[:error] = _("Error, no article found for article id #{params[:id]}")
-        return(redirect_to :action => 'index')
-      end
 
       if params[:merge_with] == params[:id]
         flash[:error] = _("Error, you cannot merge the same article with itself")
@@ -30,6 +28,9 @@ class Admin::ContentController < Admin::BaseController
 
       #Article.find(@other_article_id).destroy
       #debugger
+    rescue
+      flash[:error] = _("this_article: #{@this_article.id}, other: #{@other_article_id}")
+    end
 
       redirect_to :action =>  'index'
   end
