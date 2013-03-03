@@ -23,7 +23,8 @@ class Article < Content
   has_many :categories, :through => :categorizations
   has_many :triggers, :as => :pending_item
 
-  has_many :comments,   :dependent => :destroy, :order => "created_at ASC" do
+  #:dependent => :destroy, commented out
+  has_many :comments,  :order => "created_at ASC" do
 
     # Get only ham or presumed_ham comments
     def ham
@@ -470,6 +471,7 @@ class Article < Content
   def merge_with(other_article_id)
     self.comments << Article.find(other_article_id).comments
     self.body_and_extended << Article.find(other_article_id).body_and_extended
+    
     return self   
   end
 end
