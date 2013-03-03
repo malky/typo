@@ -8,6 +8,11 @@ class Admin::ContentController < Admin::BaseController
 
   def merge
 
+      unless params[:id]
+        flash[:error] = _("Error, no param:id exists")
+        return(redirect_to :action => 'index')
+      end
+
       @this_article = Article.find(params[:id])
       @other_article_id = params[:merge_with]
 
@@ -23,13 +28,10 @@ class Admin::ContentController < Admin::BaseController
         return(redirect_to :action => 'index')
       end
 
-      #@new_article.save!
-
       #Article.find(@other_article_id).destroy
       #debugger
 
       redirect_to :action =>  'index'
-      #Article.merge_with(params[:merge_with_id])
   end
 
   def auto_complete_for_article_keywords
