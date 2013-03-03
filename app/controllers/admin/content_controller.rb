@@ -23,8 +23,8 @@ class Admin::ContentController < Admin::BaseController
         return(redirect_to :action => 'index')
       end
 
-      @new_article.save!
-      
+      #@new_article.save!
+
       #Article.find(@other_article_id).destroy
       #debugger
 
