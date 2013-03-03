@@ -475,7 +475,7 @@ class Article < Content
     #self.body_and_extended = @other_article.body.insert(start_index, span_open)
     #self.generate_html(:body, self.body)
     #self.content_fields << @other_article.content_fields
-
+    self.save!
     return self   
   end
 end
