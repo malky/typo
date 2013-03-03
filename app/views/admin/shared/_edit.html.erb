@@ -5,11 +5,12 @@
 
 <% end %>
 
-
+<% if @article.user_id %>
 	<%= form_tag :action => 'merge', :id => @article.id do %>
 	   	<h4>Merge Articles</h4>
 		<label for='merge_with_id'>Article ID</label>
 		<input id="merge_with_id" name="merge_with" type="text" />
 		<%= submit_tag 'Merge' %>
 	<% end %>
+<% end %>	
 	
