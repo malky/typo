@@ -473,8 +473,6 @@ class Article < Content
     
     self.comments << @other_article.comments
     self.body << @other_article.body
-    
-    self.save!
 
     return self   
   end

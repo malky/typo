@@ -20,7 +20,7 @@ class Admin::ContentController < Admin::BaseController
       end  
 
       unless @other_article_id == ""
-        @new_article = @this_article.merge_with(@other_article_id)
+        @this_article.merge_with(@other_article_id).save!
       else
         flash[:error] = _("Error, your submition is wrong")
         return(redirect_to :action => 'index')
