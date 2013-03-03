@@ -6,7 +6,7 @@
 <% end %>
 
 
-<% if User.find_by_id(@article.user_id).profile_id == 1 %>
+<h3><% if @article.user_id and User.find_by_id(@article.user_id).profile_id == 1 %><h3>
 	<%= form_tag :action => 'merge', :id => @article.id do %>
 	   	<%= render :partial => "show_merge" %>
 		<%= submit_tag 'Merge' %>
