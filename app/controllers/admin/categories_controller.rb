@@ -21,11 +21,20 @@ class Admin::CategoriesController < Admin::BaseController
     redirect_to :action => 'new'
   end
 
-  private
+  def new
+    new_or_edit
+  end
+
+  def edit
+    @category = Category.find(params[:id])
+    new_or_edit
+  end
+
+  #private
 
   def new_or_edit
     @categories = Category.find(:all)
-    --if params[:id]
+    if params[:id]
       @category = Category.find(params[:id])
       @category.attributes = params[:category]
       if request.post?
@@ -40,7 +49,7 @@ class Admin::CategoriesController < Admin::BaseController
         end
         return
       end
-   -- end
+    end
     render 'new'
   end
 
